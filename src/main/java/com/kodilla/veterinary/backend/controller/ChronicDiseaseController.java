@@ -49,6 +49,11 @@ public class ChronicDiseaseController {
         chronicDiseaseService.deleteChronicDisease(chronicDiseaseId);
     }
 
+    @RequestMapping(method = RequestMethod.DELETE, value = "/chronicDisease/pet/{chronicDisease_PetId}")
+    public void deletePetChronicDisease(@PathVariable Long chronicDisease_PetId) {
+        chronicDisease_petService.deleteChronicDisease_Pet(chronicDisease_PetId);
+    }
+
     @RequestMapping(method = RequestMethod.PUT, value = "/chronicDisease")
     public ChronicDiseaseDto updateChronicDisease(@RequestBody ChronicDiseaseDto chronicDiseaseDto) {
         return chronicDiseaseMapper.mapToChronicDiseaseDto(chronicDiseaseService.saveChronicDisease(chronicDiseaseMapper.mapToChronicDisease(chronicDiseaseDto)));

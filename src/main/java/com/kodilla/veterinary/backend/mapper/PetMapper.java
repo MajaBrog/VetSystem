@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 @Component
 public class PetMapper {
     @Autowired
-    ChronicDiseaseMapper chronicDiseaseMapper;
+    ChronicDisease_PetMapper chronicDisease_petMapper;
     @Autowired
     VisitMapper visitMapper;
     @Autowired
@@ -32,7 +32,6 @@ public class PetMapper {
     }
 
     public PetDto mapToPetDto(final Pet pet) {
-        System.out.println(chronicDiseaseMapper.mapToChronicDiseaseDtoList(pet.getChronicDiseases()));
         return new PetDto(
                 pet.getId(),
                 pet.getChipId(),
@@ -40,7 +39,7 @@ public class PetMapper {
                 pet.getKind(),
                 visitMapper.mapToVisitDtoList(pet.getVisits()),
                 pet.getBirthDate(),
-                chronicDiseaseMapper.mapToChronicDiseaseDtoList(pet.getChronicDiseases()),
+                chronicDisease_petMapper.mapToChronicDisease_PetDtoList(pet.getChronicDiseases_Pet()),
                 pet.isSterilised(),
                 pet.getDateOfSterilization(),
                 pet.isAggressive(),
@@ -56,7 +55,7 @@ public class PetMapper {
                         p.getKind(),
                         visitMapper.mapToVisitDtoList(p.getVisits()),
                         p.getBirthDate(),
-                        chronicDiseaseMapper.mapToChronicDiseaseDtoList(p.getChronicDiseases()),
+                        chronicDisease_petMapper.mapToChronicDisease_PetDtoList(p.getChronicDiseases_Pet()),
                         p.isSterilised(),
                         p.getDateOfSterilization(),
                         p.isAggressive(),

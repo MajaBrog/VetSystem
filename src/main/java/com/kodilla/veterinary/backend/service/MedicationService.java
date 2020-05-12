@@ -1,7 +1,7 @@
 package com.kodilla.veterinary.backend.service;
 
 import com.kodilla.veterinary.backend.convert.client.ConvertClient;
-import com.kodilla.veterinary.backend.convert.doamin.ConvertDto;
+import com.kodilla.veterinary.backend.convert.domain.ConvertDto;
 import com.kodilla.veterinary.backend.domain.Medication;
 import com.kodilla.veterinary.backend.domain.Unit;
 import com.kodilla.veterinary.backend.repository.MedicationRepository;

@@ -1,6 +1,8 @@
 package com.kodilla.veterinary.backend.controller;
 
 import com.kodilla.veterinary.backend.domain.MedicationDto;
+import com.kodilla.veterinary.backend.facade.FilterFacade;
+import com.kodilla.veterinary.backend.facade.SearchException;
 import com.kodilla.veterinary.backend.mapper.MedicationMapper;
 import com.kodilla.veterinary.backend.service.MedicationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,8 @@ public class MedicationController {
 
     @Autowired
     private MedicationMapper medicationMapper;
+    @Autowired
+    private FilterFacade filterFacade;
 
     @RequestMapping(method = RequestMethod.GET, value = "/medication")
     private List<MedicationDto> getMedications(){
@@ -28,6 +32,11 @@ public class MedicationController {
     @RequestMapping(method = RequestMethod.GET, value = "/medication/{medicationId}")
     public MedicationDto getMedication(@PathVariable Long medicationId) throws RecordNotFoundException {
         return medicationMapper.mapToMedicationDto(medicationService.getMedication(medicationId).orElseThrow(RecordNotFoundException::new));
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/medication/filter/{nameFragment}")
+    public  List<MedicationDto> filterMedicationByLastName(@PathVariable String nameFragment) throws SearchException {
+        return medicationMapper.mapToMedicationDtoList(filterFacade.filterMedications(nameFragment));
     }
 
     @RequestMapping(method = RequestMethod.DELETE, value = "/medication/{medicationId}")

@@ -31,7 +31,8 @@ public class Visit_VaccinationMapper {
                 visit_Vaccination.getVisit().getId(),
                 visit_Vaccination.getVaccination().getId(),
                 visit_Vaccination.getDose(),
-                visit_Vaccination.getUnit());
+                visit_Vaccination.getUnit(),
+                visit_Vaccination.getRemindDate());
     }
 
     public List<Visit_VaccinationDto> mapToVisit_VaccinationDtoList(final List<Visit_Vaccination> visit_VaccinationList){
@@ -41,7 +42,8 @@ public class Visit_VaccinationMapper {
                         v.getVisit().getId(),
                         v.getVaccination().getId(),
                         v.getDose(),
-                        v.getUnit()))
+                        v.getUnit(),
+                        v.getRemindDate()))
                 .collect(Collectors.toList());
     }
 }

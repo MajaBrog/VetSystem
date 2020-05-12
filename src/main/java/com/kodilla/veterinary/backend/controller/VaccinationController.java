@@ -1,5 +1,7 @@
 package com.kodilla.veterinary.backend.controller;
 import com.kodilla.veterinary.backend.domain.VaccinationDto;
+import com.kodilla.veterinary.backend.facade.FilterFacade;
+import com.kodilla.veterinary.backend.facade.SearchException;
 import com.kodilla.veterinary.backend.mapper.VaccinationMapper;
 import com.kodilla.veterinary.backend.service.VaccinationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,9 @@ public class VaccinationController {
     @Autowired
     private VaccinationMapper vaccinationMapper;
 
+    @Autowired
+    private FilterFacade filterFacade;
+
     @RequestMapping(method = RequestMethod.GET, value = "/vaccination")
     private List<VaccinationDto> getVaccinations(){
         return vaccinationMapper.mapToVaccinationDtoList(vaccinationService.getAllVaccinations());
@@ -27,6 +32,11 @@ public class VaccinationController {
     @RequestMapping(method = RequestMethod.GET, value = "/vaccination/{vaccinationId}")
     public VaccinationDto getVaccination(@PathVariable Long vaccinationId) throws RecordNotFoundException {
         return vaccinationMapper.mapToVaccinationDto(vaccinationService.getVaccination(vaccinationId).orElseThrow(RecordNotFoundException::new));
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/vaccination/filter/{nameFragment}")
+    public  List<VaccinationDto> filterVaccinationByLastName(@PathVariable String nameFragment) throws SearchException {
+        return vaccinationMapper.mapToVaccinationDtoList(filterFacade.filterVaccinations(nameFragment));
     }
 
     @RequestMapping(method = RequestMethod.DELETE, value = "/vaccination/{vaccinationId}")

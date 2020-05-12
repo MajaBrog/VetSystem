@@ -9,7 +9,6 @@ import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-
 @Data
 @NoArgsConstructor
 @Entity
@@ -19,23 +18,25 @@ public class Visit {
     private Long id;
     @Column
     private LocalDate dateOfVisit;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     private Pet pet;
     @NotNull
     private String diagnose;
     @Column
-    private String AdditionalRecommendation;
+    private String additionalRecommendation;
     private int weight;
-    @OneToMany( targetEntity = Visit_Medication.class, mappedBy = "medication",fetch = FetchType.LAZY)
+    @OneToMany( targetEntity = Visit_Medication.class, mappedBy = "visit",fetch = FetchType.LAZY)
     private List<Visit_Medication> visit_medications = new ArrayList<>();
-    @OneToMany( targetEntity = Visit_Vaccination.class, mappedBy = "vaccination",fetch = FetchType.LAZY)
+    @OneToMany( targetEntity = Visit_Vaccination.class, mappedBy = "visit",fetch = FetchType.LAZY)
     private List<Visit_Vaccination> visit_vaccinations = new ArrayList<>();
+
+
 
     public Visit(Pet pet, @NotNull String diagnose, String additionalRecommendation, int weight) {
         this.dateOfVisit = LocalDate.now();
         this.pet = pet;
         this.diagnose = diagnose;
-        this.AdditionalRecommendation = additionalRecommendation;
+        this.additionalRecommendation = additionalRecommendation;
         this.weight = weight;
     }
 }

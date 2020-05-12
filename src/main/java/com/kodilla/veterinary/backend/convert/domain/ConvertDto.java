@@ -1,4 +1,4 @@
-package com.kodilla.veterinary.backend.convert.doamin;
+package com.kodilla.veterinary.backend.convert.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

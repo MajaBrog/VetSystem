@@ -7,7 +7,9 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
-
+@NamedNativeQuery(name = "Medication.filterMedications",
+        query = "SELECT * FROM VACCINATION WHERE MEDICATION_NAME LIKE CONCAT('%', :KEYWORD , '%')",
+        resultClass = Medication.class)
 @Data
 @NoArgsConstructor
 @Entity

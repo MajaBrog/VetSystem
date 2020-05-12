@@ -2,6 +2,7 @@ package com.kodilla.veterinary.backend.domain;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 
 import javax.persistence.*;
@@ -10,6 +11,7 @@ import javax.validation.constraints.NotNull;
 @EqualsAndHashCode
 @Data
 @Entity
+@NoArgsConstructor
 public class Visit_Medication {
     @Id
     @GeneratedValue

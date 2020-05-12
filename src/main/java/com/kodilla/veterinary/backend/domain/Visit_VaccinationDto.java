@@ -1,10 +1,12 @@
 package com.kodilla.veterinary.backend.domain;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Getter
+import java.time.LocalDate;
+
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class Visit_VaccinationDto {
@@ -13,6 +15,7 @@ public class Visit_VaccinationDto {
     private Long vaccinationId;
     private String dose;
     private Unit unit;
+    private LocalDate remindDate;
 
     public Visit_VaccinationDto(Long visitId, Long vaccinationId, String dose, Unit unit) {
         this.visitId = visitId;

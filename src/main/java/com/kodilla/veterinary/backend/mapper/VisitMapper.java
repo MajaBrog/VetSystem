@@ -34,9 +34,9 @@ public class VisitMapper {
                 visit.getPet().getId(),
                 visit.getDiagnose(),
                 visit.getAdditionalRecommendation(),
-                visit.getWeight(),
-                visit_medicationMapper.mapToVisit_MedicationDtoList(visit.getVisit_medications()),
-                visit_vaccinationMapper.mapToVisit_VaccinationDtoList(visit.getVisit_vaccinations()));
+                visit.getWeight());
+//                visit_medicationMapper.mapToVisit_MedicationDtoList(visit.getVisit_medications()),
+//                visit_vaccinationMapper.mapToVisit_VaccinationDtoList(visit.getVisit_vaccinations()));
     }
 
     public List<VisitDto> mapToVisitDtoList(final List<Visit> visitList) {
@@ -47,9 +47,9 @@ public class VisitMapper {
                         v.getPet().getId(),
                         v.getDiagnose(),
                         v.getAdditionalRecommendation(),
-                        v.getWeight(),
-                        visit_medicationMapper.mapToVisit_MedicationDtoList(v.getVisit_medications()),
-                        visit_vaccinationMapper.mapToVisit_VaccinationDtoList(v.getVisit_vaccinations())))
+                        v.getWeight()))
+//                        visit_medicationMapper.mapToVisit_MedicationDtoList(v.getVisit_medications()),
+//                        visit_vaccinationMapper.mapToVisit_VaccinationDtoList(v.getVisit_vaccinations())))
                 .collect(Collectors.toList());
     }
 }

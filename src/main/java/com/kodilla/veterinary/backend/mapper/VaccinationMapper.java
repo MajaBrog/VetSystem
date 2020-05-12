@@ -15,22 +15,23 @@ public class VaccinationMapper {
     public Vaccination mapToVaccination(final VaccinationDto vaccinationDto) {
         return new Vaccination(
                 vaccinationDto.getName(),
-                vaccinationDto.getDiseases(),
+                vaccinationDto.getDisease(),
                 vaccinationDto.getDosePerKg(),
                 vaccinationDto.getUnit(),
-                vaccinationDto.isMandatory());
+                vaccinationDto.isMandatory(),
+                vaccinationDto.getIntervalInWeeks());
     }
 
     public VaccinationDto mapToVaccinationDto(final Vaccination vaccination) {
         return new VaccinationDto(
                 vaccination.getId(),
                 vaccination.getName(),
-                vaccination.getDiseases(),
+                vaccination.getDisease(),
                 vaccination.getDosePerKg(),
                 vaccination.getUnit(),
                 vaccination.isMandatory(),
-                visit_vaccinationMapper.mapToVisit_VaccinationDtoList(vaccination.getVisit_vaccinations())
-                );
+                vaccination.getIntervalInWeeks(),
+                visit_vaccinationMapper.mapToVisit_VaccinationDtoList(vaccination.getVisit_vaccinations()));
     }
 
     public List<VaccinationDto> mapToVaccinationDtoList(final List<Vaccination> vaccinationList) {
@@ -38,10 +39,11 @@ public class VaccinationMapper {
                 .map(v -> new VaccinationDto(
                         v.getId(),
                         v.getName(),
-                        v.getDiseases(),
+                        v.getDisease(),
                         v.getDosePerKg(),
                         v.getUnit(),
                         v.isMandatory(),
+                        v.getIntervalInWeeks(),
                         visit_vaccinationMapper.mapToVisit_VaccinationDtoList(v.getVisit_vaccinations())))
                         .collect(Collectors.toList());
     }

@@ -1,7 +1,7 @@
 package com.kodilla.veterinary.backend.convert.client;
 
 import com.kodilla.veterinary.backend.convert.config.ConvertConfig;
-import com.kodilla.veterinary.backend.convert.doamin.ConvertDto;
+import com.kodilla.veterinary.backend.convert.domain.ConvertDto;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,11 +25,11 @@ public class ConvertClient {
     private RestTemplate restTemplate;
 
     public ConvertDto convert(ConvertDto convertDto) {
-        URI url = UriComponentsBuilder.fromHttpUrl("https://community-neutrino-currency-conversion.p.rapidapi.com/convert").build().encode().toUri();
+        URI url = UriComponentsBuilder.fromHttpUrl(convertConfig.getConvertApiEndpoint()).build().encode().toUri();
 
         HttpHeaders headers = new HttpHeaders();
-        headers.set("x-rapidapi-host", "community-neutrino-currency-conversion.p.rapidapi.com");
-        headers.set("x-rapidapi-key", "9c4dc94bcfmsh10836b3385cb4ecp15e277jsn95f39221dc11");
+        headers.set("x-rapidapi-host", convertConfig.getConvertApiHost());
+        headers.set("x-rapidapi-key", convertConfig.getConvertApiKey());
         headers.setContentType(APPLICATION_JSON);
 
         String json = "{\"from-type\":\"" + convertDto.getFromType() +

@@ -2,6 +2,7 @@ package com.kodilla.veterinary.backend.domain;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Proxy;
 
 
 import javax.persistence.*;
@@ -20,11 +21,11 @@ public class Pet {
     private String chipId;
     private String name;
     private String kind;
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "pet")
     private List<Visit> visits;
     private LocalDate birthDate;
-    @OneToMany(cascade = CascadeType.ALL)
-    private List<ChronicDisease> chronicDiseases = new ArrayList<>();
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "pet")
+    private List<ChronicDisease_Pet> chronicDiseases_Pet = new ArrayList<>();
     @NotNull
     private boolean sterilised;
     private LocalDate dateOfSterilization;

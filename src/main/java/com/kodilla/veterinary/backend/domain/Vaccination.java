@@ -2,13 +2,16 @@ package com.kodilla.veterinary.backend.domain;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Proxy;
 
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
-
+@NamedNativeQuery(name = "Vaccination.filterVaccinations",
+        query = "SELECT * FROM VACCINATION WHERE NAME LIKE CONCAT('%', :KEYWORD , '%')",
+        resultClass = Vaccination.class)
 @Data
 @NoArgsConstructor
 @Entity
@@ -19,7 +22,7 @@ public class Vaccination {
     @NotNull
     private String name;
     @NotNull
-    private String diseases;
+    private String disease;
     @NotNull
     private String dosePerKg;
     @Enumerated(EnumType.STRING)
@@ -27,14 +30,18 @@ public class Vaccination {
     private Unit unit;
     @NotNull
     private boolean mandatory;
+    @NotNull
+    private long intervalInWeeks;
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "vaccination")
     private List<Visit_Vaccination> visit_vaccinations = new ArrayList<>();
 
-    public Vaccination(@NotNull String name, @NotNull String diseases, @NotNull String dosePerKg, @NotNull Unit unit, @NotNull boolean mandatory) {
+    public Vaccination(@NotNull String name, @NotNull String disease, @NotNull String dosePerKg, @NotNull Unit unit, @NotNull boolean mandatory, @NotNull long intervalInWeeks) {
         this.name = name;
-        this.diseases = diseases;
+        this.disease = disease;
         this.dosePerKg = dosePerKg;
         this.unit = unit;
         this.mandatory = mandatory;
+        this.intervalInWeeks = intervalInWeeks;
     }
 }
+

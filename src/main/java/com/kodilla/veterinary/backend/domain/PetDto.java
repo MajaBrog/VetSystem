@@ -17,7 +17,7 @@ public class PetDto {
     private String kind;
     private List<VisitDto> visitDtoList;
     private LocalDate birthDate;
-    private List<ChronicDiseaseDto> chronicDiseaseDtoList;
+    private List<ChronicDisease_PetDto> chronicDisease_PetDtoList;
     private boolean sterilised;
     private LocalDate dateOfSterilization;
     private boolean aggressive;

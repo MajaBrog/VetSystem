@@ -20,6 +20,7 @@ public class VisitController {
     @Autowired
     private VisitMapper visitMapper;
 
+
     @RequestMapping(method = RequestMethod.GET, value = "/visit")
     private List<VisitDto> getVisits(){
         return visitMapper.mapToVisitDtoList(visitService.getAllVisits());
@@ -30,6 +31,10 @@ public class VisitController {
         return visitMapper.mapToVisitDto(visitService.getVisit(visitId).orElseThrow(RecordNotFoundException::new));
     }
 
+    @RequestMapping(method = RequestMethod.GET, value = "/visit/pet/{petId}")
+    public List<VisitDto>  getPetVisits(@PathVariable Long petId) throws RecordNotFoundException {
+        return visitMapper.mapToVisitDtoList(visitService.getPetVisits(petId));
+    }
     @RequestMapping(method = RequestMethod.DELETE, value = "/visit/{visitId}")
     public void deleteVisit(@PathVariable Long visitId) {
         visitService.deleteVisit(visitId);

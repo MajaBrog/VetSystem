@@ -10,6 +10,8 @@ import org.springframework.stereotype.Component;
 public class ConvertConfig {
     @Value("${convert.api.endpoint.prod}")
     private String convertApiEndpoint;
+    @Value("${convert.api.host}")
+    private String convertApiHost;
     @Value("${convert.api.key}")
     private String convertApiKey;
 }
