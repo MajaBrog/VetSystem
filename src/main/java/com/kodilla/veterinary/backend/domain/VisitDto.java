@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Getter
 @NoArgsConstructor
@@ -16,8 +17,8 @@ public class VisitDto {
     private String diagnose;
     private String additionalRecommendation;
     private int weight;
-//    private List<Visit_MedicationDto> visit_medicationsDtoList;
-//    private List<Visit_VaccinationDto> visit_vaccinationsDtoList;
+    private List<Visit_MedicationDto> visit_medicationsDtoList;
+    private List<Visit_VaccinationDto> visit_vaccinationsDtoList;
 
     public VisitDto(Long petId, String diagnose, String additionalRecommendation, int weight) {
         this.petId = petId;

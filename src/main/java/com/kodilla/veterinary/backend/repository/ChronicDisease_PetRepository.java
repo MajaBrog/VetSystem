@@ -8,8 +8,6 @@ import java.util.List;
 import java.util.Optional;
 
 public interface ChronicDisease_PetRepository extends CrudRepository<ChronicDisease_Pet, Long> {
-    @EntityGraph(attributePaths = {"chronicDisease","pet"})
-
     @Override
     List<ChronicDisease_Pet> findAll();
 

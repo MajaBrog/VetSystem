@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.Optional;
 
 public interface Visit_VaccinationRepository extends CrudRepository<Visit_Vaccination, Long> {
-    @EntityGraph(attributePaths = {"visit","vaccination"})
     @Override
     List<Visit_Vaccination> findAll();
 

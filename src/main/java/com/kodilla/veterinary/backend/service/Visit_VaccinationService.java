@@ -2,6 +2,7 @@ package com.kodilla.veterinary.backend.service;
 
 
 import com.kodilla.veterinary.backend.controller.RecordNotFoundException;
+import com.kodilla.veterinary.backend.domain.Visit_Medication;
 import com.kodilla.veterinary.backend.domain.Visit_Vaccination;
 import com.kodilla.veterinary.backend.repository.Visit_VaccinationRepository;
 import com.kodilla.veterinary.backend.sms.domain.SMSDto;
@@ -29,6 +30,12 @@ public class Visit_VaccinationService {
 
     public Optional<Visit_Vaccination> getVisit_Vaccination(final Long id) {
         return repository.findById(id);
+    }
+
+    public List<Visit_Vaccination> getVisitVaccinations(Long visitId){
+        return repository.findAll().stream()
+                .filter(n->n.getVisit().getId().equals(visitId))
+                .collect(Collectors.toList());
     }
 
     public Visit_Vaccination saveVisit_Vaccination(final Visit_Vaccination visit_Vaccination) {

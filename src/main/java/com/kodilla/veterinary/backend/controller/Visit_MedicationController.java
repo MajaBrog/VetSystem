@@ -26,6 +26,12 @@ public class Visit_MedicationController {
         return visit_MedicationMapper.mapToVisit_MedicationDtoList(visit_MedicationService.getAllVisit_Medications());
     }
 
+
+    @RequestMapping(method = RequestMethod.GET, value = "/visit_Medication/visit/{visitId}")
+    private List<Visit_MedicationDto> getVisitMedications(@PathVariable Long visitId){
+        return visit_MedicationMapper.mapToVisit_MedicationDtoList(visit_MedicationService.getVisitMedications(visitId));
+    }
+
     @RequestMapping(method = RequestMethod.GET, value = "/visit_Medication/{visit_MedicationId}")
     public Visit_MedicationDto getVisit_Medication(@PathVariable Long visit_MedicationId) throws RecordNotFoundException {
         return visit_MedicationMapper.mapToVisit_MedicationDto(visit_MedicationService.getVisit_Medication(visit_MedicationId).orElseThrow(RecordNotFoundException::new));

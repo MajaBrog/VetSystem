@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.Optional;
 
 public interface Visit_MedicationRepository extends CrudRepository<Visit_Medication, Long> {
-//    @EntityGraph(attributePaths = {"visit","medication"})
     @Override
     List<Visit_Medication> findAll();
 

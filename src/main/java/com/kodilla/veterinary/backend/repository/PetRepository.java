@@ -11,7 +11,6 @@ public interface PetRepository extends CrudRepository<Pet, Long> {
     @Override
     List<Pet> findAll();
 
-    @EntityGraph(attributePaths = {"client"})
     @Override
     Optional<Pet> findById(Long id);
 

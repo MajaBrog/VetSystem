@@ -8,6 +8,9 @@ import org.hibernate.annotations.Proxy;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.List;
+@NamedNativeQuery(name = "ChronicDisease.filterChronicDiseases",
+        query = "SELECT * FROM CHRONIC_DISEASE WHERE NAME LIKE CONCAT('%', :KEYWORD , '%')",
+        resultClass = ChronicDisease.class)
 @Data
 @NoArgsConstructor
 @Entity

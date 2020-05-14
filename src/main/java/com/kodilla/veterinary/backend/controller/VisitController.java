@@ -1,5 +1,7 @@
 package com.kodilla.veterinary.backend.controller;
 import com.kodilla.veterinary.backend.domain.VisitDto;
+import com.kodilla.veterinary.backend.facade.FilterFacade;
+import com.kodilla.veterinary.backend.facade.SearchException;
 import com.kodilla.veterinary.backend.mapper.VisitMapper;
 import com.kodilla.veterinary.backend.service.VisitService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,8 @@ public class VisitController {
     @Autowired
     private VisitMapper visitMapper;
 
+    @Autowired
+    FilterFacade filterFacade;
 
     @RequestMapping(method = RequestMethod.GET, value = "/visit")
     private List<VisitDto> getVisits(){
@@ -30,7 +34,10 @@ public class VisitController {
     public VisitDto getVisit(@PathVariable Long visitId) throws RecordNotFoundException {
         return visitMapper.mapToVisitDto(visitService.getVisit(visitId).orElseThrow(RecordNotFoundException::new));
     }
-
+    @RequestMapping(method = RequestMethod.GET, value = "/visit/filter/{nameFragment}")
+    private List<VisitDto> filterVisit(@PathVariable String nameFragment) throws SearchException {
+        return visitMapper.mapToVisitDtoList(filterFacade.filterVisits(nameFragment));
+    }
     @RequestMapping(method = RequestMethod.GET, value = "/visit/pet/{petId}")
     public List<VisitDto>  getPetVisits(@PathVariable Long petId) throws RecordNotFoundException {
         return visitMapper.mapToVisitDtoList(visitService.getPetVisits(petId));

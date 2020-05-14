@@ -1,17 +1,18 @@
 package com.kodilla.veterinary.backend.facade;
 
-import com.kodilla.veterinary.backend.domain.Client;
-import com.kodilla.veterinary.backend.domain.Medication;
-import com.kodilla.veterinary.backend.domain.Vaccination;
-import com.kodilla.veterinary.backend.repository.ClientRepository;
-import com.kodilla.veterinary.backend.repository.MedicationRepository;
-import com.kodilla.veterinary.backend.repository.VaccinationRepository;
+import com.kodilla.veterinary.backend.domain.*;
+import com.kodilla.veterinary.backend.repository.*;
+import com.kodilla.veterinary.backend.service.VisitService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.stream.Collectors;
+
+import java.lang.String;
 
 @Service
 public class FilterFacade {
@@ -25,6 +26,12 @@ public class FilterFacade {
 
     @Autowired
     VaccinationRepository vaccinationRepository;
+
+    @Autowired
+    ChronicDiseaseRepository chronicDiseaseRepository;
+
+    @Autowired
+    VisitService visitService;
 
     public List<Client> filterClients(String nameFragment) throws SearchException {
         if (nameFragment.length() == 0) {
@@ -82,5 +89,46 @@ public class FilterFacade {
 
         return listOfVaccinationsFound;
     }
+
+    public List<ChronicDisease> filterChronicDiseases(String nameFragment) throws SearchException {
+        if (nameFragment.length() == 0) {
+            LOGGER.error(SearchException.ERR_NAME_FRAGMENT_IS_NULL);
+            throw new SearchException(SearchException.ERR_NAME_FRAGMENT_IS_NULL);
+        }
+
+        LOGGER.info("Searching for chronicDiseases which names contains: " + nameFragment);
+        List<ChronicDisease> listOfChronicDiseasesFound = chronicDiseaseRepository.filterChronicDiseases(nameFragment);
+        if (listOfChronicDiseasesFound.size() == 0) {
+            LOGGER.info("No chronicDiseases found where last name contains: " + nameFragment);
+        }
+        for (ChronicDisease chronicDisease : listOfChronicDiseasesFound) {
+            LOGGER.info("ChronicDiseases that matches the criteria: " + chronicDisease.getName());
+        }
+        LOGGER.info("End of searching process.");
+
+        return listOfChronicDiseasesFound;
+    }
+
+    @Transactional
+    public List<Visit> filterVisits(String nameFragment) throws SearchException {
+        if (nameFragment.length() == 0) {
+            LOGGER.error(SearchException.ERR_NAME_FRAGMENT_IS_NULL);
+            throw new SearchException(SearchException.ERR_NAME_FRAGMENT_IS_NULL);
+        }
+
+        LOGGER.info("Searching for visits which names contains: " + nameFragment);
+        List<Visit> listOfVisitsFound = visitService.getAllVisits().stream()
+                .filter(n -> n.getPet().getClient().getLastName().contains(nameFragment))
+                .collect(Collectors.toList());
+        if (listOfVisitsFound.size() == 0) {
+            LOGGER.info("No visits found where last name contains: " + nameFragment);
+        }
+        LOGGER.info("Number of visits that matches the criteria: " + listOfVisitsFound.size() + 1);
+
+        LOGGER.info("End of searching process.");
+
+        return listOfVisitsFound;
+    }
+
 
 }

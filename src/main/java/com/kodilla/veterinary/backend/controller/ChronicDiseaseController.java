@@ -2,6 +2,8 @@ package com.kodilla.veterinary.backend.controller;
 
 import com.kodilla.veterinary.backend.domain.ChronicDiseaseDto;
 import com.kodilla.veterinary.backend.domain.ChronicDisease_PetDto;
+import com.kodilla.veterinary.backend.facade.FilterFacade;
+import com.kodilla.veterinary.backend.facade.SearchException;
 import com.kodilla.veterinary.backend.mapper.ChronicDiseaseMapper;
 import com.kodilla.veterinary.backend.mapper.ChronicDisease_PetMapper;
 import com.kodilla.veterinary.backend.service.ChronicDiseaseService;
@@ -29,6 +31,8 @@ public class ChronicDiseaseController {
     @Autowired
     private ChronicDisease_PetMapper chronicDisease_petMapper;
 
+    @Autowired
+    private FilterFacade filterFacade;
     @RequestMapping(method = RequestMethod.GET, value = "/chronicDisease")
     private List<ChronicDiseaseDto> getAllChronicDiseases() {
         return chronicDiseaseMapper.mapToChronicDiseaseDtoList(chronicDiseaseService.getAllChronicDiseases());
@@ -37,6 +41,11 @@ public class ChronicDiseaseController {
     @RequestMapping(method = RequestMethod.GET, value = "/chronicDisease/{chronicDiseaseId}")
     public ChronicDiseaseDto getChronicDisease(@PathVariable Long chronicDiseaseId) throws RecordNotFoundException {
         return chronicDiseaseMapper.mapToChronicDiseaseDto(chronicDiseaseService.getChronicDisease(chronicDiseaseId).orElseThrow(RecordNotFoundException::new));
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/chronicDisease/filter/{nameFragment}")
+    private List<ChronicDiseaseDto> filterChronicDisease(@PathVariable String nameFragment) throws SearchException {
+        return chronicDiseaseMapper.mapToChronicDiseaseDtoList(filterFacade.filterChronicDiseases(nameFragment));
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/chronicDisease/pet/{petId}")

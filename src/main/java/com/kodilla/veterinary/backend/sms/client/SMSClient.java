@@ -30,8 +30,6 @@ public class SMSClient {
         URI url = UriComponentsBuilder.fromHttpUrl(convertConfig.getSmsApiEndpoint()).build().encode().toUri();
 
         HttpHeaders headers = new HttpHeaders();
-//        headers.set("x-rapidapi-host", convertConfig.getSmsApiHost());
-//        headers.set("x-rapidapi-key", convertConfig.getSmsApiKey());
         headers.set("authorization", "Basic bWpqYTEwOTA6VVVWdWJVRTQ=");
         headers.setContentType(APPLICATION_JSON);
 

@@ -31,6 +31,12 @@ public class Visit_VaccinationController {
         return visit_VaccinationMapper.mapToVisit_VaccinationDto(visit_VaccinationService.getVisit_Vaccination(visit_VaccinationId).orElseThrow(RecordNotFoundException::new));
     }
 
+    @RequestMapping(method = RequestMethod.GET, value = "/visit_Vaccination/visit/{visitId}")
+    private List<Visit_VaccinationDto> getVisitMedications(@PathVariable Long visitId){
+        return visit_VaccinationMapper.mapToVisit_VaccinationDtoList(visit_VaccinationService.getVisitVaccinations(visitId));
+    }
+
+
     @RequestMapping(method = RequestMethod.DELETE, value = "/visit_Vaccination/{visit_VaccinationId}")
     public void deleteVisit_Vaccination(@PathVariable Long visit_VaccinationId) {
         visit_VaccinationService.deleteVisit_Vaccination(visit_VaccinationId);
