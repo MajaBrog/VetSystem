@@ -10,7 +10,7 @@ Do stworzenia wartswy widkou została wykorzystana biblioteka Vaadin w wersji '1
 
 Warstwa frontendowa oraz backendowa zostały utworzone jako osobne projekty a w celu ich połaczenia wykorzystano klasę RestTemplate.
 
-W projekcie wykorzystano dwa zewnętrzne źródła danych:
+Dodatkowo w projekcie wykorzystano dwa zewnętrzne źródła danych:
 
 - konwerter jednostek w celu przeliczenia jednostek wprowadzanych do bazy leków
 
