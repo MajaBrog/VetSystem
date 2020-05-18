@@ -14,25 +14,25 @@ public class PetService {
     @Autowired
     private PetRepository repository;
 
-    public List<Pet> getAllPets(){
+    public List<Pet> getAllPets() {
         return repository.findAll();
     }
 
-    public List<Pet> getAllClientPets(final Long clientId){
+    public List<Pet> getAllClientPets(final Long clientId) {
         return repository.findAll().stream()
-                .filter(p->p.getClient().getId().equals(clientId))
+                .filter(p -> p.getClient().getId().equals(clientId))
                 .collect(Collectors.toList());
     }
 
-    public Optional<Pet> getPet(final Long id){
+    public Optional<Pet> getPet(final Long id) {
         return repository.findById(id);
     }
 
-    public Pet savePet(final Pet pet){
+    public Pet savePet(final Pet pet) {
         return repository.save(pet);
     }
 
-    public void deletePet(final Long id){
+    public void deletePet(final Long id) {
         repository.deleteById(id);
     }
 }

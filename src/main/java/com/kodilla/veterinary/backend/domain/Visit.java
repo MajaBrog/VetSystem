@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
@@ -28,11 +27,10 @@ public class Visit {
     @Column
     private String additionalRecommendation;
     private int weight;
-    @OneToMany( targetEntity = Visit_Medication.class, mappedBy = "visit",fetch = FetchType.LAZY)
+    @OneToMany(targetEntity = Visit_Medication.class, mappedBy = "visit", fetch = FetchType.LAZY)
     private List<Visit_Medication> visit_medications = new ArrayList<>();
-    @OneToMany( targetEntity = Visit_Vaccination.class, mappedBy = "visit",fetch = FetchType.LAZY)
+    @OneToMany(targetEntity = Visit_Vaccination.class, mappedBy = "visit", fetch = FetchType.LAZY)
     private List<Visit_Vaccination> visit_vaccinations = new ArrayList<>();
-
 
 
     public Visit(Pet pet, @NotNull String diagnose, String additionalRecommendation, int weight) {
@@ -42,8 +40,9 @@ public class Visit {
         this.additionalRecommendation = additionalRecommendation;
         this.weight = weight;
     }
-    public Visit(Long id,Pet pet, @NotNull String diagnose, String additionalRecommendation, int weight) {
-        this.id=id;
+
+    public Visit(Long id, Pet pet, @NotNull String diagnose, String additionalRecommendation, int weight) {
+        this.id = id;
         this.dateOfVisit = LocalDate.now();
         this.pet = pet;
         this.diagnose = diagnose;

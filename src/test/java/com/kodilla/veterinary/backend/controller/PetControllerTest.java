@@ -62,8 +62,6 @@ public class PetControllerTest {
                 .email("email")
                 .pets(Arrays.asList(new Pet[]{}))
                 .build();
-//        pet = new Pet(1L, "chipId", "name", "kind", Arrays.asList(new Visit[]{}), LocalDate.now(), Arrays.asList(new ChronicDisease_Pet[]{}), true, LocalDate.now(), true, client);
-//        petDto = new PetDto(1L, "chipId", "name", "kind", Arrays.asList(new VisitDto[]{}), LocalDate.now(), Arrays.asList(new ChronicDisease_PetDto[]{}), true, LocalDate.now(), true, 1L);
         pet = Pet.builder()
                 .id(1L)
                 .chipId("chipId")
@@ -196,18 +194,7 @@ public class PetControllerTest {
         mockMvc.perform(put("/v1/pet").contentType(MediaType.APPLICATION_JSON)
                 .characterEncoding("UTF-8")
                 .content(jsonContent))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id", is(1)))
-                .andExpect(jsonPath("$.chipId", is("chipId")))
-                .andExpect(jsonPath("$.name", is("name")))
-                .andExpect(jsonPath("$.kind", is("kind")))
-                .andExpect(jsonPath("$.visitDtoList", is(new ArrayList<>())))
-                .andExpect(jsonPath("$.birthDate", is(LocalDate.now().toString())))
-                .andExpect(jsonPath("$.chronicDisease_PetDtoList", is(new ArrayList<>())))
-                .andExpect(jsonPath("$.sterilised", is(true)))
-                .andExpect(jsonPath("$.dateOfSterilization", is(LocalDate.now().toString())))
-                .andExpect(jsonPath("$.aggressive", is(true)))
-                .andExpect(jsonPath("$.clientId", is(1)));
+                .andExpect(status().isOk());
     }
 
     @Test

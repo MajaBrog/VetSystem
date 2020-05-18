@@ -27,16 +27,17 @@ public class MedicationController {
     private FilterFacade filterFacade;
 
     @RequestMapping(method = RequestMethod.GET, value = "/medication")
-    private List<MedicationDto> getMedications(){
+    private List<MedicationDto> getMedications() {
         return medicationMapper.mapToMedicationDtoList(medicationService.getAllMedications());
     }
+
     @RequestMapping(method = RequestMethod.GET, value = "/medication/{medicationId}")
     public MedicationDto getMedication(@PathVariable Long medicationId) throws RecordNotFoundException {
         return medicationMapper.mapToMedicationDto(medicationService.getMedication(medicationId).orElseThrow(RecordNotFoundException::new));
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/medication/filter/{nameFragment}")
-    public  List<MedicationDto> filterMedicationByName(@PathVariable String nameFragment) throws SearchException {
+    public List<MedicationDto> filterMedicationByName(@PathVariable String nameFragment) throws SearchException {
         return medicationMapper.mapToMedicationDtoList(filterFacade.filterMedications(nameFragment));
     }
 

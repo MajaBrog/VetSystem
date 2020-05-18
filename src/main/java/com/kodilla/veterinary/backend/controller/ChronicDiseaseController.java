@@ -33,6 +33,7 @@ public class ChronicDiseaseController {
 
     @Autowired
     private FilterFacade filterFacade;
+
     @RequestMapping(method = RequestMethod.GET, value = "/chronicDisease")
     private List<ChronicDiseaseDto> getAllChronicDiseases() {
         return chronicDiseaseMapper.mapToChronicDiseaseDtoList(chronicDiseaseService.getAllChronicDiseases());
@@ -65,7 +66,7 @@ public class ChronicDiseaseController {
 
     @RequestMapping(method = RequestMethod.PUT, value = "/chronicDisease")
     public void updateChronicDisease(@RequestBody ChronicDiseaseDto chronicDiseaseDto) {
-         chronicDiseaseService.saveChronicDisease(chronicDiseaseMapper.mapToUpdatedChronicDisease(chronicDiseaseDto));
+        chronicDiseaseService.saveChronicDisease(chronicDiseaseMapper.mapToUpdatedChronicDisease(chronicDiseaseDto));
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/chronicDisease", consumes = APPLICATION_JSON_VALUE)

@@ -22,13 +22,6 @@ public class ClientMapper {
                 .address(clientDto.getAddress())
                 .email(clientDto.getEmail())
                 .build();
-//        return new Client(
-//                clientDto.getLegalID(),
-//                clientDto.getFirstName(),
-//                clientDto.getLastName(),
-//                clientDto.getPhoneNumber(),
-//                clientDto.getAddress(),
-//                clientDto.getEmail());
     }
 
     public Client mapToUpdatedClient(final ClientDto clientDto) {
@@ -41,14 +34,6 @@ public class ClientMapper {
                 .address(clientDto.getAddress())
                 .email(clientDto.getEmail())
                 .build();
-//        return new Client(
-//                clientDto.getId(),
-//                clientDto.getLegalID(),
-//                clientDto.getFirstName(),
-//                clientDto.getLastName(),
-//                clientDto.getPhoneNumber(),
-//                clientDto.getAddress(),
-//                clientDto.getEmail());
     }
 
     public ClientDto mapToClientDto(final Client client) {
@@ -60,17 +45,7 @@ public class ClientMapper {
                 .phoneNumber(client.getPhoneNumber())
                 .address(client.getAddress())
                 .email(client.getEmail())
-//                .petDtoList(petMapper.mapToPetDtoList(client.getPets()))
                 .build();
-//        return new ClientDto(
-//                client.getId(),
-//                client.getLegalID(),
-//                client.getFirstName(),
-//                client.getLastName(),
-//                client.getPhoneNumber(),
-//                client.getAddress(),
-//                client.getEmail(),
-//                petMapper.mapToPetDtoList(client.getPets()));
     }
 
     public List<ClientDto> mapToClientDtoList(final List<Client> clientList) {
@@ -83,17 +58,7 @@ public class ClientMapper {
                         .phoneNumber(client.getPhoneNumber())
                         .address(client.getAddress())
                         .email(client.getEmail())
-//                        .petDtoList(petMapper.mapToPetDtoList(client.getPets()))
                         .build())
-//                        new ClientDto(
-//                        c.getId(),
-//                        c.getLegalID(),
-//                        c.getFirstName(),
-//                        c.getLastName(),
-//                        c.getPhoneNumber(),
-//                        c.getAddress(),
-//                        c.getEmail(),
-//                        petMapper.mapToPetDtoList(c.getPets())))
                 .collect(Collectors.toList());
     }
 }

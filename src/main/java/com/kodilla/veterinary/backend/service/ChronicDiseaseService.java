@@ -14,18 +14,19 @@ public class ChronicDiseaseService {
     @Autowired
     private ChronicDiseaseRepository repository;
 
-    public List<ChronicDisease> getAllChronicDiseases(){
+    public List<ChronicDisease> getAllChronicDiseases() {
         return repository.findAll();
     }
-    public Optional<ChronicDisease> getChronicDisease(final Long id){
+
+    public Optional<ChronicDisease> getChronicDisease(final Long id) {
         return repository.findById(id);
     }
 
-    public ChronicDisease saveChronicDisease(final ChronicDisease chronicDisease){
+    public ChronicDisease saveChronicDisease(final ChronicDisease chronicDisease) {
         return repository.save(chronicDisease);
     }
 
-    public void deleteChronicDisease(final Long id){
+    public void deleteChronicDisease(final Long id) {
         repository.deleteById(id);
     }
 }

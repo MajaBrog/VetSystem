@@ -8,6 +8,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
+
 @NamedNativeQuery(name = "Medication.filterMedications",
         query = "SELECT * FROM MEDICATION WHERE MEDICATION_NAME LIKE CONCAT('%', :KEYWORD , '%')",
         resultClass = Medication.class)
@@ -35,8 +36,9 @@ public class Medication {
         this.dosePerKg = dosePerKg;
         this.unit = unit;
     }
-    public Medication(Long id,@NotNull String medicationName, @NotNull String dosePerKg, @NotNull Unit unit) {
-        this.id=id;
+
+    public Medication(Long id, @NotNull String medicationName, @NotNull String dosePerKg, @NotNull Unit unit) {
+        this.id = id;
         this.medicationName = medicationName;
         this.dosePerKg = dosePerKg;
         this.unit = unit;

@@ -1,7 +1,10 @@
 package com.kodilla.veterinary.backend.facade;
 
 import com.kodilla.veterinary.backend.domain.*;
-import com.kodilla.veterinary.backend.repository.*;
+import com.kodilla.veterinary.backend.repository.ChronicDiseaseRepository;
+import com.kodilla.veterinary.backend.repository.ClientRepository;
+import com.kodilla.veterinary.backend.repository.MedicationRepository;
+import com.kodilla.veterinary.backend.repository.VaccinationRepository;
 import com.kodilla.veterinary.backend.service.VisitService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,8 +14,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
-
-import java.lang.String;
 
 @Service
 public class FilterFacade {
@@ -96,13 +97,13 @@ public class FilterFacade {
             throw new SearchException(SearchException.ERR_NAME_FRAGMENT_IS_NULL);
         }
 
-        LOGGER.info("Searching for chronicDiseases which names contains: " + nameFragment);
+        LOGGER.info("Searching for chronic diseases which names contains: " + nameFragment);
         List<ChronicDisease> listOfChronicDiseasesFound = chronicDiseaseRepository.filterChronicDiseases(nameFragment);
         if (listOfChronicDiseasesFound.size() == 0) {
-            LOGGER.info("No chronicDiseases found where last name contains: " + nameFragment);
+            LOGGER.info("No chronic diseases found where last name contains: " + nameFragment);
         }
         for (ChronicDisease chronicDisease : listOfChronicDiseasesFound) {
-            LOGGER.info("ChronicDiseases that matches the criteria: " + chronicDisease.getName());
+            LOGGER.info("Chronic diseases that matches the criteria: " + chronicDisease.getName());
         }
         LOGGER.info("End of searching process.");
 

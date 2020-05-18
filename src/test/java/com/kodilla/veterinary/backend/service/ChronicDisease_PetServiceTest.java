@@ -79,20 +79,6 @@ public class ChronicDisease_PetServiceTest {
         assertEquals(2, allChronicDisease_Pets.size());
     }
 
-//    @Test
-//    public void getChronicDisease_Pet() {
-//        //Given
-//        ChronicDisease_Pet chronicDisease_Pet1 = new ChronicDisease_Pet(1L, pet, chronicDisease, LocalDate.now());
-//
-//        when(chronicDisease_PetRepository.findById(1L)).thenReturn(Optional.of(chronicDisease_Pet1));
-//        //When
-//        ChronicDisease_Pet chronicDisease_Pet = chronicDisease_PetService.get(1L).get();
-//        //Then
-//        assertEquals(1L, chronicDisease_Pet.getId(), 0);
-//        assertEquals(pet, chronicDisease_Pet.getPet());
-//        assertEquals(chronicDisease, chronicDisease_Pet.getChronicDisease());
-//        assertEquals(LocalDate.now(), chronicDisease_Pet.getDateOfDiagnosis());
-//    }
 
     @Test
     public void saveChronicDisease_Pet() {

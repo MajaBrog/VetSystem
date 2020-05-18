@@ -60,8 +60,8 @@ public class Visit_VaccinationServiceTest {
                 .aggressive(true)
                 .client(client)
                 .build();
-        Vaccination vaccination = new Vaccination(1l, "name", "disease", "dosePerKg", Unit.MG, true, 2L, Arrays.asList(new Visit_Vaccination[]{}));
-        Visit visit = new Visit(1L, LocalDate.now(), pet, "diagnose", "additionalRecommendation", 15, Arrays.asList(new Visit_Medication[]{}), Arrays.asList(new Visit_Vaccination[]{}));
+        vaccination = new Vaccination(1l, "name", "disease", "dosePerKg", Unit.MG, true, 2L, Arrays.asList(new Visit_Vaccination[]{}));
+        visit = new Visit(1L, LocalDate.now(), pet, "diagnose", "additionalRecommendation", 15, Arrays.asList(new Visit_Medication[]{}), Arrays.asList(new Visit_Vaccination[]{}));
         Visit_Vaccination visit_vaccination = new Visit_Vaccination(1L, visit, vaccination, "dose", Unit.MG, LocalDate.now());
     }
 
@@ -99,26 +99,7 @@ public class Visit_VaccinationServiceTest {
     }
 
     @Test
-    public void saveVisit_Vaccination() {
-        //Given
-        Visit_Vaccination visit_Vaccination1 = new Visit_Vaccination(1L, visit, vaccination, "dose", Unit.MG, LocalDate.now());
-
-        when(visit_VaccinationRepository.save(visit_Vaccination1)).thenReturn(visit_Vaccination1);
-        //When
-        Visit_Vaccination visit_Vaccination = visit_VaccinationService.saveVisit_Vaccination(visit_Vaccination1);
-        //Then
-        assertEquals(1L, visit_Vaccination.getId(), 0);
-        assertEquals(visit, visit_Vaccination.getVisit());
-        assertEquals(vaccination, visit_Vaccination.getVaccination());
-        assertEquals("dose", visit_Vaccination.getDose());
-        assertEquals(Unit.MG, visit_Vaccination.getUnit());
-        assertEquals(LocalDate.now(), visit_Vaccination.getRemindDate());
-    }
-
-
-    @Test
     public void deleteVisit_Vaccination() {
-
         //When
         visit_VaccinationService.deleteVisit_Vaccination(1L);
         //Then

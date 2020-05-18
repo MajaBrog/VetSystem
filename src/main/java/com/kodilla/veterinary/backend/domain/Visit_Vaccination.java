@@ -4,9 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.Proxy;
-import org.springframework.data.jpa.repository.EntityGraph;
-
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -32,7 +29,6 @@ public class Visit_Vaccination {
     @NotNull
     private Unit unit;
     private LocalDate remindDate;
-
 
     public Visit_Vaccination(Visit visit, Vaccination vaccination, @NotNull String dose, @NotNull Unit unit) {
         this.visit = visit;

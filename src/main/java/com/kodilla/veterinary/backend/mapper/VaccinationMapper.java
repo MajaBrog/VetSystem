@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
 public class VaccinationMapper {
     @Autowired
     Visit_VaccinationMapper visit_vaccinationMapper;
+
     public Vaccination mapToVaccination(final VaccinationDto vaccinationDto) {
         return new Vaccination(
                 vaccinationDto.getName(),
@@ -32,7 +33,6 @@ public class VaccinationMapper {
                 vaccinationDto.isMandatory(),
                 vaccinationDto.getIntervalInWeeks());
     }
-
 
     public VaccinationDto mapToVaccinationDto(final Vaccination vaccination) {
         return new VaccinationDto(
@@ -57,6 +57,6 @@ public class VaccinationMapper {
                         v.isMandatory(),
                         v.getIntervalInWeeks(),
                         visit_vaccinationMapper.mapToVisit_VaccinationDtoList(v.getVisit_vaccinations())))
-                        .collect(Collectors.toList());
+                .collect(Collectors.toList());
     }
 }

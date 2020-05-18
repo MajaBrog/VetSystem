@@ -30,12 +30,12 @@ public class SMSClient {
         URI url = UriComponentsBuilder.fromHttpUrl(convertConfig.getSmsApiEndpoint()).build().encode().toUri();
 
         HttpHeaders headers = new HttpHeaders();
-        headers.set("authorization", "Basic bWpqYTEwOTA6VVVWdWJVRTQ=");
+        headers.set("authorization", "Basic c2psYjM0NzY6WThPSmZvdXU=");
         headers.setContentType(APPLICATION_JSON);
 
-        String json = "{\"to\":\"48"+SMSDto.getTo()+
-                "\",\"content\":\""+SMSDto.getContent()+
-                "\",\"from\":\""+SMSDto.getFrom()+
+        String json = "{\"to\":\"48" + SMSDto.getTo() +
+                "\",\"content\":\"" + SMSDto.getContent() +
+                "\",\"from\":\"" + SMSDto.getFrom() +
                 "\",\"dlr\":\"yes\",\"dlr-method\":\"GET\",\"dlr-level\":\"2\",\"dlr-url\":\"http://yourcustompostbackurl.com\"}";
 
         HttpEntity<String> request = new HttpEntity<String>(json, headers);

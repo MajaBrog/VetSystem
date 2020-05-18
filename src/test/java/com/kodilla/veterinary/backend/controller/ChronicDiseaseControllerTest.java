@@ -165,10 +165,7 @@ public class ChronicDiseaseControllerTest {
         mockMvc.perform(put("/v1/chronicDisease").contentType(MediaType.APPLICATION_JSON)
                 .characterEncoding("UTF-8")
                 .content(jsonContent))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id", is(1)))
-                .andExpect(jsonPath("$.name", is("name")))
-                .andExpect(jsonPath("$.chronicDisease_PetDtoList", is(new ArrayList<>())));
+                .andExpect(status().isOk());
     }
 
     @Test

@@ -1,4 +1,5 @@
 package com.kodilla.veterinary.backend.mapper;
+
 import com.kodilla.veterinary.backend.controller.RecordNotFoundException;
 import com.kodilla.veterinary.backend.domain.Visit_Medication;
 import com.kodilla.veterinary.backend.domain.Visit_MedicationDto;
@@ -17,7 +18,7 @@ public class Visit_MedicationMapper {
     @Autowired
     MedicationService medicationService;
 
-    public Visit_Medication mapToVisit_Medication(final Visit_MedicationDto visit_MedicationDto){
+    public Visit_Medication mapToVisit_Medication(final Visit_MedicationDto visit_MedicationDto) {
         return new Visit_Medication(
                 visitService.getVisit(visit_MedicationDto.getVisitId()).orElseThrow(RecordNotFoundException::new),
                 medicationService.getMedication(visit_MedicationDto.getMedicationId()).orElseThrow(RecordNotFoundException::new),
@@ -34,9 +35,9 @@ public class Visit_MedicationMapper {
                 visit_Medication.getUnit());
     }
 
-    public List<Visit_MedicationDto> mapToVisit_MedicationDtoList(final List<Visit_Medication> visit_MedicationList){
+    public List<Visit_MedicationDto> mapToVisit_MedicationDtoList(final List<Visit_Medication> visit_MedicationList) {
         return visit_MedicationList.stream()
-                .map(v->new Visit_MedicationDto(
+                .map(v -> new Visit_MedicationDto(
                         v.getId(),
                         v.getVisit().getId(),
                         v.getMedication().getId(),

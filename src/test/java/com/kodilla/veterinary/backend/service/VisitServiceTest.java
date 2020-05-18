@@ -131,7 +131,6 @@ public class VisitServiceTest {
 
     @Test
     public void deleteVisit() {
-
         //When
         visitService.deleteVisit(1L);
         //Then

@@ -9,8 +9,4 @@ import org.springframework.stereotype.Component;
 public class SMSConfig {
     @Value("${sms.api.endpoint.prod}")
     private String smsApiEndpoint;
-    @Value("${sms.api.host}")
-    private String smsApiHost;
-    @Value("${sms.api.key}")
-    private String smsApiKey;
 }

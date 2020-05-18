@@ -1,4 +1,5 @@
 package com.kodilla.veterinary.backend.mapper;
+
 import com.kodilla.veterinary.backend.controller.RecordNotFoundException;
 import com.kodilla.veterinary.backend.domain.ChronicDisease_Pet;
 import com.kodilla.veterinary.backend.domain.ChronicDisease_PetDto;
@@ -17,31 +18,16 @@ public class ChronicDisease_PetMapper {
     @Autowired
     ChronicDiseaseService chronicDiseaseService;
 
-    public ChronicDisease_Pet mapToChronicDisease_Pet(final ChronicDisease_PetDto chronicDisease_PetDto){
+    public ChronicDisease_Pet mapToChronicDisease_Pet(final ChronicDisease_PetDto chronicDisease_PetDto) {
         return new ChronicDisease_Pet(
                 petService.getPet(chronicDisease_PetDto.getPetId()).orElseThrow(RecordNotFoundException::new),
                 chronicDiseaseService.getChronicDisease(chronicDisease_PetDto.getChronicDiseaseId()).orElseThrow(RecordNotFoundException::new),
                 chronicDisease_PetDto.getDateOfDiagnosis());
     }
 
-    public ChronicDisease_Pet mapToUpdatedChronicDisease_Pet(final ChronicDisease_PetDto chronicDisease_PetDto){
-        return new ChronicDisease_Pet(chronicDisease_PetDto.getId(),
-                petService.getPet(chronicDisease_PetDto.getPetId()).orElseThrow(RecordNotFoundException::new),
-                chronicDiseaseService.getChronicDisease(chronicDisease_PetDto.getChronicDiseaseId()).orElseThrow(RecordNotFoundException::new),
-                chronicDisease_PetDto.getDateOfDiagnosis());
-    }
-
-    public ChronicDisease_PetDto mapToChronicDisease_PetDto(final ChronicDisease_Pet chronicDisease_Pet) {
-        return new ChronicDisease_PetDto(
-                chronicDisease_Pet.getId(),
-                chronicDisease_Pet.getPet().getId(),
-                chronicDisease_Pet.getChronicDisease().getId(),
-                chronicDisease_Pet.getDateOfDiagnosis());
-    }
-
-    public List<ChronicDisease_PetDto> mapToChronicDisease_PetDtoList(final List<ChronicDisease_Pet> chronicDisease_PetList){
+    public List<ChronicDisease_PetDto> mapToChronicDisease_PetDtoList(final List<ChronicDisease_Pet> chronicDisease_PetList) {
         return chronicDisease_PetList.stream()
-                .map(c->new ChronicDisease_PetDto(
+                .map(c -> new ChronicDisease_PetDto(
                         c.getId(),
                         c.getPet().getId(),
                         c.getChronicDisease().getId(),

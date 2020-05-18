@@ -1,7 +1,6 @@
 package com.kodilla.veterinary.backend.repository;
 
 import com.kodilla.veterinary.backend.domain.Pet;
-import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;

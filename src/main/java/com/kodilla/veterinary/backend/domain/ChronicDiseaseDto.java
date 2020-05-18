@@ -1,7 +1,5 @@
 package com.kodilla.veterinary.backend.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,7 +13,7 @@ import java.util.List;
 public class ChronicDiseaseDto {
     private Long id;
     private String name;
-    private List<ChronicDisease_PetDto> chronicDisease_PetDtoList=new ArrayList<>();
+    private List<ChronicDisease_PetDto> chronicDisease_PetDtoList = new ArrayList<>();
 
     public ChronicDiseaseDto(String name) {
         this.name = name;

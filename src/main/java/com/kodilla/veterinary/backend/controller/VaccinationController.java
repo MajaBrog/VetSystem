@@ -1,4 +1,5 @@
 package com.kodilla.veterinary.backend.controller;
+
 import com.kodilla.veterinary.backend.domain.VaccinationDto;
 import com.kodilla.veterinary.backend.facade.FilterFacade;
 import com.kodilla.veterinary.backend.facade.SearchException;
@@ -26,16 +27,17 @@ public class VaccinationController {
     private FilterFacade filterFacade;
 
     @RequestMapping(method = RequestMethod.GET, value = "/vaccination")
-    private List<VaccinationDto> getVaccinations(){
+    private List<VaccinationDto> getVaccinations() {
         return vaccinationMapper.mapToVaccinationDtoList(vaccinationService.getAllVaccinations());
     }
+
     @RequestMapping(method = RequestMethod.GET, value = "/vaccination/{vaccinationId}")
     public VaccinationDto getVaccination(@PathVariable Long vaccinationId) throws RecordNotFoundException {
         return vaccinationMapper.mapToVaccinationDto(vaccinationService.getVaccination(vaccinationId).orElseThrow(RecordNotFoundException::new));
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/vaccination/filter/{nameFragment}")
-    public  List<VaccinationDto> filterVaccinationByLastName(@PathVariable String nameFragment) throws SearchException {
+    public List<VaccinationDto> filterVaccinationByLastName(@PathVariable String nameFragment) throws SearchException {
         return vaccinationMapper.mapToVaccinationDtoList(filterFacade.filterVaccinations(nameFragment));
     }
 

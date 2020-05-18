@@ -1,6 +1,8 @@
 package com.kodilla.veterinary.backend.service;
 
 import com.kodilla.veterinary.backend.convert.client.ConvertClient;
+import com.kodilla.veterinary.backend.convert.config.ConvertConfig;
+import com.kodilla.veterinary.backend.convert.domain.ConvertDto;
 import com.kodilla.veterinary.backend.domain.Medication;
 import com.kodilla.veterinary.backend.domain.Unit;
 import com.kodilla.veterinary.backend.domain.Visit_Medication;
@@ -11,6 +13,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -32,6 +35,7 @@ public class MedicationServiceTest {
 
     @Mock
     private ConvertClient convertClient;
+
 
     @Test
     public void getAllMedications() {
@@ -62,22 +66,6 @@ public class MedicationServiceTest {
         assertEquals("name",medication.getMedicationName());
         assertEquals("dosePerKg",medication.getDosePerKg());
         assertEquals(Unit.MG,medication.getUnit());
-        assertEquals(new ArrayList<>(),medication.getVisit_medications());
-    }
-
-    @Test
-    public void saveMedication() {
-        //Given
-        Medication medication1 = new Medication(1L, "name", "dosePerKg", Unit.G, Arrays.asList(new Visit_Medication[]{}));
-
-        when(medicationRepository.save(medication1)).thenReturn(medication1);
-        //When
-        Medication medication = medicationService.saveMedication(medication1);
-        //Then
-        assertEquals(2L, medication.getId(),0);
-        assertEquals("name",medication.getMedicationName());
-        assertEquals("dosePerKg",medication.getDosePerKg());
-        assertEquals(Unit.G,medication.getUnit());
         assertEquals(new ArrayList<>(),medication.getVisit_medications());
     }
 

@@ -3,13 +3,12 @@ package com.kodilla.veterinary.backend.domain;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.Proxy;
-
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
+
 @NamedNativeQuery(name = "Vaccination.filterVaccinations",
         query = "SELECT * FROM VACCINATION WHERE NAME LIKE CONCAT('%', :KEYWORD , '%')",
         resultClass = Vaccination.class)
@@ -45,8 +44,9 @@ public class Vaccination {
         this.mandatory = mandatory;
         this.intervalInWeeks = intervalInWeeks;
     }
+
     public Vaccination(Long id, @NotNull String name, @NotNull String disease, @NotNull String dosePerKg, @NotNull Unit unit, @NotNull boolean mandatory, @NotNull long intervalInWeeks) {
-        this.id=id;
+        this.id = id;
         this.name = name;
         this.disease = disease;
         this.dosePerKg = dosePerKg;

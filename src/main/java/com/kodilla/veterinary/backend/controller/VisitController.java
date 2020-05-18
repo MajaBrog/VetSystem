@@ -1,5 +1,5 @@
 package com.kodilla.veterinary.backend.controller;
-import com.kodilla.veterinary.backend.domain.Visit;
+
 import com.kodilla.veterinary.backend.domain.VisitDto;
 import com.kodilla.veterinary.backend.facade.FilterFacade;
 import com.kodilla.veterinary.backend.facade.SearchException;
@@ -27,7 +27,7 @@ public class VisitController {
     FilterFacade filterFacade;
 
     @RequestMapping(method = RequestMethod.GET, value = "/visit")
-    private List<VisitDto> getVisits(){
+    private List<VisitDto> getVisits() {
         return visitMapper.mapToVisitDtoList(visitService.getAllVisits());
     }
 
@@ -35,14 +35,17 @@ public class VisitController {
     public VisitDto getVisit(@PathVariable Long visitId) throws RecordNotFoundException {
         return visitMapper.mapToVisitDto(visitService.getVisit(visitId).orElseThrow(RecordNotFoundException::new));
     }
+
     @RequestMapping(method = RequestMethod.GET, value = "/visit/filter/{nameFragment}")
     private List<VisitDto> filterVisit(@PathVariable String nameFragment) throws SearchException {
         return visitMapper.mapToVisitDtoList(filterFacade.filterVisits(nameFragment));
     }
+
     @RequestMapping(method = RequestMethod.GET, value = "/visit/pet/{petId}")
-    public List<VisitDto>  getPetVisits(@PathVariable Long petId) throws RecordNotFoundException {
+    public List<VisitDto> getPetVisits(@PathVariable Long petId) throws RecordNotFoundException {
         return visitMapper.mapToVisitDtoList(visitService.getPetVisits(petId));
     }
+
     @RequestMapping(method = RequestMethod.DELETE, value = "/visit/{visitId}")
     public void deleteVisit(@PathVariable Long visitId) {
         visitService.deleteVisit(visitId);

@@ -11,5 +11,4 @@ public class SMSDto {
     private String to;
     private String from;
     private String Content;
-
 }

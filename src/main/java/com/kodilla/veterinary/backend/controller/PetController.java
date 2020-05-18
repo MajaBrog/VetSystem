@@ -1,4 +1,5 @@
 package com.kodilla.veterinary.backend.controller;
+
 import com.kodilla.veterinary.backend.domain.PetDto;
 import com.kodilla.veterinary.backend.mapper.PetMapper;
 import com.kodilla.veterinary.backend.service.PetService;
@@ -21,13 +22,13 @@ public class PetController {
     private PetMapper petMapper;
 
     @RequestMapping(method = RequestMethod.GET, value = "/pet")
-    private List<PetDto> getAllPets(){
+    private List<PetDto> getAllPets() {
         return petMapper.mapToPetDtoList(petService.getAllPets());
     }
 
 
     @RequestMapping(method = RequestMethod.GET, value = "/pet/client/{clientId}")
-    private List<PetDto> getClientPets(@PathVariable Long clientId){
+    private List<PetDto> getClientPets(@PathVariable Long clientId) {
         return petMapper.mapToPetDtoList(petService.getAllClientPets(clientId));
     }
 
@@ -43,7 +44,7 @@ public class PetController {
 
     @RequestMapping(method = RequestMethod.PUT, value = "/pet")
     public void updatePet(@RequestBody PetDto petDto) {
-         petService.savePet(petMapper.mapToUpdatedPet(petDto));
+        petService.savePet(petMapper.mapToUpdatedPet(petDto));
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/pet", consumes = APPLICATION_JSON_VALUE)

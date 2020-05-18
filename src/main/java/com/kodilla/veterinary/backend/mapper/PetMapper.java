@@ -30,17 +30,7 @@ public class PetMapper {
                 .aggressive(petDto.isAggressive())
                 .client(clientService.getClient(petDto.getClientId()).orElseThrow(RecordNotFoundException::new))
                 .build();
-
-//                petDto.getChipId(),
-//                petDto.getName(),
-//                petDto.getKind(),
-//                petDto.getBirthDate(),
-//                petDto.isSterilised(),
-//                petDto.getDateOfSterilization(),
-//                petDto.isAggressive(),
-//                clientService.getClient(petDto.getClientId()).orElseThrow(RecordNotFoundException::new));
     }
-
 
     public Pet mapToUpdatedPet(final PetDto petDto) {
         return Pet.builder()
@@ -70,20 +60,7 @@ public class PetMapper {
                 .aggressive(pet.isAggressive())
                 .clientId(pet.getClient().getId())
                 .build();
-//        return new PetDto(
-//                pet.getId(),
-//                pet.getChipId(),
-//                pet.getName(),
-//                pet.getKind(),
-//                visitMapper.mapToVisitDtoList(pet.getVisits()),
-//                pet.getBirthDate(),
-//                chronicDisease_petMapper.mapToChronicDisease_PetDtoList(pet.getChronicDiseases_Pet()),
-//                pet.isSterilised(),
-//                pet.getDateOfSterilization(),
-//                pet.isAggressive(),
-//                pet.getClient().getId());
     }
-
 
     public List<PetDto> mapToPetDtoList(final List<Pet> petList) {
         return petList.stream()
@@ -100,18 +77,6 @@ public class PetMapper {
                         .aggressive(pet.isAggressive())
                         .clientId(pet.getClient().getId())
                         .build())
-//                        new PetDto(
-//                        p.getId(),
-//                        p.getChipId(),
-//                        p.getName(),
-//                        p.getKind(),
-//                        visitMapper.mapToVisitDtoList(p.getVisits()),
-//                        p.getBirthDate(),
-//                        chronicDisease_petMapper.mapToChronicDisease_PetDtoList(p.getChronicDiseases_Pet()),
-//                        p.isSterilised(),
-//                        p.getDateOfSterilization(),
-//                        p.isAggressive(),
-//                        p.getClient().getId()))
                 .collect(Collectors.toList());
     }
 }

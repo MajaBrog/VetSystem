@@ -130,7 +130,6 @@ public class Visit_MedicationServiceTest {
 
     @Test
     public void deleteVisit_Medication() {
-
         //When
         visit_MedicationService.deleteVisit_Medication(1L);
         //Then

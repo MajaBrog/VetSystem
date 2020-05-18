@@ -22,13 +22,13 @@ public class Visit_MedicationController {
     private Visit_MedicationMapper visit_MedicationMapper;
 
     @RequestMapping(method = RequestMethod.GET, value = "/visit_Medication")
-    private List<Visit_MedicationDto> getVisit_Medications(){
+    private List<Visit_MedicationDto> getVisit_Medications() {
         return visit_MedicationMapper.mapToVisit_MedicationDtoList(visit_MedicationService.getAllVisit_Medications());
     }
 
 
     @RequestMapping(method = RequestMethod.GET, value = "/visit_Medication/visit/{visitId}")
-    private List<Visit_MedicationDto> getVisitMedications(@PathVariable Long visitId){
+    private List<Visit_MedicationDto> getVisitMedications(@PathVariable Long visitId) {
         return visit_MedicationMapper.mapToVisit_MedicationDtoList(visit_MedicationService.getVisitMedications(visitId));
     }
 
@@ -41,11 +41,6 @@ public class Visit_MedicationController {
     public void deleteVisit_Medication(@PathVariable Long visit_MedicationId) {
         visit_MedicationService.deleteVisit_Medication(visit_MedicationId);
     }
-//
-//    @RequestMapping(method = RequestMethod.PUT, value = "/visit_Medication")
-//    public Visit_MedicationDto updateVisit_Medication(@RequestBody Visit_MedicationDto visit_MedicationDto) {
-//        return visit_MedicationMapper.mapToVisit_MedicationDto(visit_MedicationService.saveVisit_Medication(visit_MedicationMapper.mapToVisit_Medication(visit_MedicationDto)));
-//    }
 
     @RequestMapping(method = RequestMethod.POST, value = "/visit_Medication", consumes = APPLICATION_JSON_VALUE)
     public void addMedication(@RequestBody Visit_MedicationDto visit_MedicationDto) {

@@ -27,7 +27,7 @@ public class ClientController {
     private FilterFacade filterFacade;
 
     @RequestMapping(method = RequestMethod.GET, value = "/client")
-    private List<ClientDto> getClients(){
+    private List<ClientDto> getClients() {
         return clientMapper.mapToClientDtoList(clientService.getAllClients());
     }
 
@@ -37,7 +37,7 @@ public class ClientController {
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/client/filter/{nameFragment}")
-    public  List<ClientDto> filterClientByLastName(@PathVariable String nameFragment) throws SearchException {
+    public List<ClientDto> filterClientByLastName(@PathVariable String nameFragment) throws SearchException {
         return clientMapper.mapToClientDtoList(filterFacade.filterClients(nameFragment));
     }
 

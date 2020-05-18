@@ -17,13 +17,13 @@ public class SMSService {
     @Autowired
     SMSClient smsClient;
 
-        public void send(final SMSDto sms) {
-        LOGGER.info("Starting sms preparation...");
+    public void send(final SMSDto sms) {
+        LOGGER.info("Starting SMS preparation...");
         try {
             smsClient.sendSMS(sms);
             LOGGER.info("SMS has been sent.");
         } catch (SMSException e) {
-            LOGGER.error("Failed to process sms sending: ", e.getMessage(), e);
+            LOGGER.error("Failed to process SMS sending: ", e.getMessage(), e);
         }
     }
 }

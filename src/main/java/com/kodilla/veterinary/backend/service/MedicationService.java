@@ -28,7 +28,7 @@ public class MedicationService {
 
     public Medication saveMedication(final Medication medication) {
         if (medication.getUnit() != Unit.G || medication.getUnit() != Unit.L) {
-            Unit unit=Unit.G;
+            Unit unit = Unit.G;
             if (medication.getUnit() == Unit.MG) {
                 unit = Unit.G;
             } else if (medication.getUnit() == Unit.ML) {

@@ -22,7 +22,7 @@ public class Visit_VaccinationController {
     private Visit_VaccinationMapper visit_VaccinationMapper;
 
     @RequestMapping(method = RequestMethod.GET, value = "/visit_Vaccination")
-    private List<Visit_VaccinationDto> getVisit_Vaccinations(){
+    private List<Visit_VaccinationDto> getVisit_Vaccinations() {
         return visit_VaccinationMapper.mapToVisit_VaccinationDtoList(visit_VaccinationService.getAllVisit_Vaccinations());
     }
 
@@ -32,7 +32,7 @@ public class Visit_VaccinationController {
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/visit_Vaccination/visit/{visitId}")
-    private List<Visit_VaccinationDto> getVisitMedications(@PathVariable Long visitId){
+    private List<Visit_VaccinationDto> getVisitMedications(@PathVariable Long visitId) {
         return visit_VaccinationMapper.mapToVisit_VaccinationDtoList(visit_VaccinationService.getVisitVaccinations(visitId));
     }
 
