@@ -46,7 +46,7 @@ public class VaccinationController {
 
     @RequestMapping(method = RequestMethod.PUT, value = "/vaccination")
     public VaccinationDto updateVaccination(@RequestBody VaccinationDto vaccinationDto) {
-        return vaccinationMapper.mapToVaccinationDto(vaccinationService.saveVaccination(vaccinationMapper.mapToVaccination(vaccinationDto)));
+        return vaccinationMapper.mapToVaccinationDto(vaccinationService.saveVaccination(vaccinationMapper.mapToUpdatedVaccination(vaccinationDto)));
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/vaccination", consumes = APPLICATION_JSON_VALUE)

@@ -22,6 +22,7 @@ public class MedicationController {
 
     @Autowired
     private MedicationMapper medicationMapper;
+
     @Autowired
     private FilterFacade filterFacade;
 
@@ -35,7 +36,7 @@ public class MedicationController {
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/medication/filter/{nameFragment}")
-    public  List<MedicationDto> filterMedicationByLastName(@PathVariable String nameFragment) throws SearchException {
+    public  List<MedicationDto> filterMedicationByName(@PathVariable String nameFragment) throws SearchException {
         return medicationMapper.mapToMedicationDtoList(filterFacade.filterMedications(nameFragment));
     }
 
@@ -46,7 +47,7 @@ public class MedicationController {
 
     @RequestMapping(method = RequestMethod.PUT, value = "/medication")
     public MedicationDto updateMedication(@RequestBody MedicationDto medicationDto) {
-        return medicationMapper.mapToMedicationDto(medicationService.saveMedication(medicationMapper.mapToMedication(medicationDto)));
+        return medicationMapper.mapToMedicationDto(medicationService.saveMedication(medicationMapper.mapToUpdatedMedication(medicationDto)));
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/medication", consumes = APPLICATION_JSON_VALUE)

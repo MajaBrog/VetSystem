@@ -27,6 +27,15 @@ public class VisitMapper {
                 visitDto.getWeight());
     }
 
+    public Visit mapToUpdatedVisit(final VisitDto visitDto) {
+        return new Visit(
+                visitDto.getId(),
+                petService.getPet(visitDto.getPetId()).orElseThrow(RecordNotFoundException::new),
+                visitDto.getDiagnose(),
+                visitDto.getAdditionalRecommendation(),
+                visitDto.getWeight());
+    }
+
     public VisitDto mapToVisitDto(final Visit visit) {
         return new VisitDto(
                 visit.getId(),

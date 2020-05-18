@@ -20,14 +20,14 @@ public class ChronicDisease_PetService {
                 .filter(c->c.getPet().getId().equals(petId))
                 .collect(Collectors.toList());
     }
-    public List<ChronicDisease_Pet> getAllPetWithChronicDiseases(Long chronicDiseaseId){
-        return repository.findAll().stream()
-                .filter(c->c.getChronicDisease().getId().equals(chronicDiseaseId))
-                .collect(Collectors.toList());
-    }
-    public Optional<ChronicDisease_Pet> getChronicDisease_Pet(final Long id){
-        return repository.findById(id);
-    }
+//    public List<ChronicDisease_Pet> getAllPetWithChronicDiseases(Long chronicDiseaseId){
+//        return repository.findAll().stream()
+//                .filter(c->c.getChronicDisease().getId().equals(chronicDiseaseId))
+//                .collect(Collectors.toList());
+//    }
+//    public Optional<ChronicDisease_Pet> getChronicDisease_Pet(final Long id){
+//        return repository.findById(id);
+//    }
 
     public ChronicDisease_Pet saveChronicDisease_Pet(final ChronicDisease_Pet chronicDisease_Pet){
         return repository.save(chronicDisease_Pet);

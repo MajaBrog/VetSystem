@@ -1,4 +1,5 @@
 package com.kodilla.veterinary.backend.controller;
+import com.kodilla.veterinary.backend.domain.Visit;
 import com.kodilla.veterinary.backend.domain.VisitDto;
 import com.kodilla.veterinary.backend.facade.FilterFacade;
 import com.kodilla.veterinary.backend.facade.SearchException;
@@ -49,21 +50,12 @@ public class VisitController {
 
     @RequestMapping(method = RequestMethod.PUT, value = "/visit")
     public VisitDto updateVisit(@RequestBody VisitDto visitDto) {
-        return visitMapper.mapToVisitDto(visitService.saveVisit(visitMapper.mapToVisit(visitDto)));
+        return visitMapper.mapToVisitDto(visitService.saveVisit(visitMapper.mapToUpdatedVisit(visitDto)));
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/visit", consumes = APPLICATION_JSON_VALUE)
-    public void createVisit(@RequestBody VisitDto visitDto) {
-        visitService.saveVisit(visitMapper.mapToVisit(visitDto));
+    public VisitDto createVisit(@RequestBody VisitDto visitDto) {
+        return visitMapper.mapToVisitDto(visitService.saveVisit(visitMapper.mapToVisit(visitDto)));
     }
 
-//    @Autowired
-//    Visit_MedicationService visit_medicationService;
-//    @Autowired
-//    Visit_MedicationMapper visit_medicationMapper;
-//
-//    @RequestMapping(method = RequestMethod.PUT, value = "/visit/medication")
-//    public Visit_Medication addMedication(@RequestBody Visit_MedicationDto Visit_MedicationDto) {
-//        return visit_medicationService.saveVisit_Medication(visit_medicationMapper.mapToVisit_Medication(Visit_MedicationDto));
-//    }
 }

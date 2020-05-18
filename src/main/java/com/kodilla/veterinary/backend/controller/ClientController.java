@@ -47,12 +47,12 @@ public class ClientController {
     }
 
     @RequestMapping(method = RequestMethod.PUT, value = "/client")
-    public ClientDto updateClient(@RequestBody ClientDto clientDto) {
-        return clientMapper.mapToClientDto(clientService.saveClient(clientMapper.mapToClient(clientDto)));
+    public void updateClient(@RequestBody ClientDto clientDto) {
+        clientService.saveClient(clientMapper.mapToUpdatedClient(clientDto));
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/client", consumes = APPLICATION_JSON_VALUE)
     public void createClient(@RequestBody ClientDto clientDto) {
-        clientService.createClient(clientMapper.mapToClient(clientDto));
+        clientService.saveClient(clientMapper.mapToClient(clientDto));
     }
 }

@@ -64,8 +64,8 @@ public class ChronicDiseaseController {
     }
 
     @RequestMapping(method = RequestMethod.PUT, value = "/chronicDisease")
-    public ChronicDiseaseDto updateChronicDisease(@RequestBody ChronicDiseaseDto chronicDiseaseDto) {
-        return chronicDiseaseMapper.mapToChronicDiseaseDto(chronicDiseaseService.saveChronicDisease(chronicDiseaseMapper.mapToChronicDisease(chronicDiseaseDto)));
+    public void updateChronicDisease(@RequestBody ChronicDiseaseDto chronicDiseaseDto) {
+         chronicDiseaseService.saveChronicDisease(chronicDiseaseMapper.mapToUpdatedChronicDisease(chronicDiseaseDto));
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/chronicDisease", consumes = APPLICATION_JSON_VALUE)

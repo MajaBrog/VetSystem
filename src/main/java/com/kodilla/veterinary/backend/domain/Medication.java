@@ -1,5 +1,6 @@
 package com.kodilla.veterinary.backend.domain;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -12,6 +13,7 @@ import java.util.List;
         resultClass = Medication.class)
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 
 public class Medication {
@@ -29,6 +31,12 @@ public class Medication {
     private List<Visit_Medication> visit_medications = new ArrayList<>();
 
     public Medication(@NotNull String medicationName, @NotNull String dosePerKg, @NotNull Unit unit) {
+        this.medicationName = medicationName;
+        this.dosePerKg = dosePerKg;
+        this.unit = unit;
+    }
+    public Medication(Long id,@NotNull String medicationName, @NotNull String dosePerKg, @NotNull Unit unit) {
+        this.id=id;
         this.medicationName = medicationName;
         this.dosePerKg = dosePerKg;
         this.unit = unit;

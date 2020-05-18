@@ -1,6 +1,7 @@
 package com.kodilla.veterinary.backend.domain;
 
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Proxy;
@@ -13,6 +14,7 @@ import java.util.List;
         resultClass = ChronicDisease.class)
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 public class ChronicDisease {
     @Id
@@ -26,4 +28,9 @@ public class ChronicDisease {
     public ChronicDisease(@NotNull String name) {
         this.name = name;
     }
+    public ChronicDisease(Long id,@NotNull String name) {
+        this.id=id;
+        this.name = name;
+    }
+
 }

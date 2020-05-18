@@ -1,5 +1,6 @@
 package com.kodilla.veterinary.backend.domain;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -12,6 +13,7 @@ import java.util.List;
 
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 public class Visit {
     @Id
@@ -34,6 +36,14 @@ public class Visit {
 
 
     public Visit(Pet pet, @NotNull String diagnose, String additionalRecommendation, int weight) {
+        this.dateOfVisit = LocalDate.now();
+        this.pet = pet;
+        this.diagnose = diagnose;
+        this.additionalRecommendation = additionalRecommendation;
+        this.weight = weight;
+    }
+    public Visit(Long id,Pet pet, @NotNull String diagnose, String additionalRecommendation, int weight) {
+        this.id=id;
         this.dateOfVisit = LocalDate.now();
         this.pet = pet;
         this.diagnose = diagnose;

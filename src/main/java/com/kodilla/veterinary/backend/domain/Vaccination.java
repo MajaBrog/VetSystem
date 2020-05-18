@@ -1,5 +1,6 @@
 package com.kodilla.veterinary.backend.domain;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Proxy;
@@ -14,11 +15,12 @@ import java.util.List;
         resultClass = Vaccination.class)
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 public class Vaccination {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long Id;
+    private Long id;
     @NotNull
     private String name;
     @NotNull
@@ -36,6 +38,15 @@ public class Vaccination {
     private List<Visit_Vaccination> visit_vaccinations = new ArrayList<>();
 
     public Vaccination(@NotNull String name, @NotNull String disease, @NotNull String dosePerKg, @NotNull Unit unit, @NotNull boolean mandatory, @NotNull long intervalInWeeks) {
+        this.name = name;
+        this.disease = disease;
+        this.dosePerKg = dosePerKg;
+        this.unit = unit;
+        this.mandatory = mandatory;
+        this.intervalInWeeks = intervalInWeeks;
+    }
+    public Vaccination(Long id, @NotNull String name, @NotNull String disease, @NotNull String dosePerKg, @NotNull Unit unit, @NotNull boolean mandatory, @NotNull long intervalInWeeks) {
+        this.id=id;
         this.name = name;
         this.disease = disease;
         this.dosePerKg = dosePerKg;

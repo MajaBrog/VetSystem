@@ -16,7 +16,7 @@ public class MedicationService {
     @Autowired
     private MedicationRepository repository;
     @Autowired
-    ConvertClient convertClient;
+    private ConvertClient convertClient;
 
     public List<Medication> getAllMedications() {
         return repository.findAll();

@@ -1,6 +1,7 @@
 package com.kodilla.veterinary.backend.domain;
 
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Proxy;
@@ -10,6 +11,7 @@ import java.time.LocalDate;
 
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 public class ChronicDisease_Pet {
     @Id

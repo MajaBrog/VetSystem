@@ -18,6 +18,13 @@ public class MedicationMapper {
                 medicationDto.getDosePerKg(),
                 medicationDto.getUnit());
     }
+    public Medication mapToUpdatedMedication(final MedicationDto medicationDto) {
+        return new Medication(
+                medicationDto.getId(),
+                medicationDto.getMedicationName(),
+                medicationDto.getDosePerKg(),
+                medicationDto.getUnit());
+    }
 
     public MedicationDto mapToMedicationDto(final Medication medication) {
         return new MedicationDto(

@@ -1,4 +1,5 @@
 package com.kodilla.veterinary.backend.mapper;
+
 import com.kodilla.veterinary.backend.domain.ChronicDisease;
 import com.kodilla.veterinary.backend.domain.ChronicDiseaseDto;
 import com.kodilla.veterinary.backend.service.PetService;
@@ -10,16 +11,19 @@ import java.util.stream.Collectors;
 
 @Component
 public class ChronicDiseaseMapper {
-    @Autowired
-    private PetService petService;
+
     @Autowired
     ChronicDisease_PetMapper chronicDisease_petMapper;
 
-    public ChronicDisease mapToChronicDisease(final ChronicDiseaseDto chronicDiseaseDto){
+    public ChronicDisease mapToChronicDisease(final ChronicDiseaseDto chronicDiseaseDto) {
         return new ChronicDisease(
                 chronicDiseaseDto.getName());
     }
-
+    public ChronicDisease mapToUpdatedChronicDisease(final ChronicDiseaseDto chronicDiseaseDto) {
+        return new ChronicDisease(
+                chronicDiseaseDto.getId(),
+                chronicDiseaseDto.getName());
+    }
     public ChronicDiseaseDto mapToChronicDiseaseDto(final ChronicDisease chronicDisease) {
         return new ChronicDiseaseDto(
                 chronicDisease.getId(),
@@ -27,9 +31,9 @@ public class ChronicDiseaseMapper {
                 chronicDisease_petMapper.mapToChronicDisease_PetDtoList(chronicDisease.getChronicDisease_Pets()));
     }
 
-    public List<ChronicDiseaseDto> mapToChronicDiseaseDtoList(final List<ChronicDisease> chronicDiseaseList){
+    public List<ChronicDiseaseDto> mapToChronicDiseaseDtoList(final List<ChronicDisease> chronicDiseaseList) {
         return chronicDiseaseList.stream()
-                .map(c->new ChronicDiseaseDto(
+                .map(c -> new ChronicDiseaseDto(
                         c.getId(),
                         c.getName(),
                         chronicDisease_petMapper.mapToChronicDisease_PetDtoList(c.getChronicDisease_Pets())))

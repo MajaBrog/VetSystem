@@ -1,5 +1,7 @@
 package com.kodilla.veterinary.backend.domain;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Proxy;
@@ -14,7 +16,9 @@ import java.util.List;
         query = "SELECT * FROM CLIENT WHERE LAST_NAME LIKE CONCAT('%', :KEYWORD , '%')",
         resultClass = Client.class)
 @Data
+@Builder
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 public class Client {
     @Id
@@ -41,12 +45,21 @@ public class Client {
         return phoneNumber;
     }
 
-    public Client(@NotNull String legalID, @NotNull String firstName, @NotNull String lastName, String phoneNumber, Address address, String email) {
-        this.legalID = legalID;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.phoneNumber = phoneNumber;
-        this.address = address;
-        this.email = email;
-    }
+//    public Client(@NotNull String legalID, @NotNull String firstName, @NotNull String lastName, String phoneNumber, Address address, String email) {
+//        this.legalID = legalID;
+//        this.firstName = firstName;
+//        this.lastName = lastName;
+//        this.phoneNumber = phoneNumber;
+//        this.address = address;
+//        this.email = email;
+//    }
+//    public Client(Long id,@NotNull String legalID, @NotNull String firstName, @NotNull String lastName, String phoneNumber, Address address, String email) {
+//        this.id=id;
+//        this.legalID = legalID;
+//        this.firstName = firstName;
+//        this.lastName = lastName;
+//        this.phoneNumber = phoneNumber;
+//        this.address = address;
+//        this.email = email;
+//    }
 }

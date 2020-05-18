@@ -41,11 +41,11 @@ public class Visit_MedicationController {
     public void deleteVisit_Medication(@PathVariable Long visit_MedicationId) {
         visit_MedicationService.deleteVisit_Medication(visit_MedicationId);
     }
-
-    @RequestMapping(method = RequestMethod.PUT, value = "/visit_Medication")
-    public Visit_MedicationDto updateVisit_Medication(@RequestBody Visit_MedicationDto visit_MedicationDto) {
-        return visit_MedicationMapper.mapToVisit_MedicationDto(visit_MedicationService.saveVisit_Medication(visit_MedicationMapper.mapToVisit_Medication(visit_MedicationDto)));
-    }
+//
+//    @RequestMapping(method = RequestMethod.PUT, value = "/visit_Medication")
+//    public Visit_MedicationDto updateVisit_Medication(@RequestBody Visit_MedicationDto visit_MedicationDto) {
+//        return visit_MedicationMapper.mapToVisit_MedicationDto(visit_MedicationService.saveVisit_Medication(visit_MedicationMapper.mapToVisit_Medication(visit_MedicationDto)));
+//    }
 
     @RequestMapping(method = RequestMethod.POST, value = "/visit_Medication", consumes = APPLICATION_JSON_VALUE)
     public void addMedication(@RequestBody Visit_MedicationDto visit_MedicationDto) {

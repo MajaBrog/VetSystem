@@ -42,11 +42,11 @@ public class PetController {
     }
 
     @RequestMapping(method = RequestMethod.PUT, value = "/pet")
-    public PetDto updatePet(@RequestBody PetDto petDto) {
-        return petMapper.mapToPetDto(petService.savePet(petMapper.mapToPet(petDto)));
+    public void updatePet(@RequestBody PetDto petDto) {
+         petService.savePet(petMapper.mapToUpdatedPet(petDto));
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "createPet", consumes = APPLICATION_JSON_VALUE)
+    @RequestMapping(method = RequestMethod.POST, value = "/pet", consumes = APPLICATION_JSON_VALUE)
     public void createPet(@RequestBody PetDto petDto) {
         petService.savePet(petMapper.mapToPet(petDto));
     }

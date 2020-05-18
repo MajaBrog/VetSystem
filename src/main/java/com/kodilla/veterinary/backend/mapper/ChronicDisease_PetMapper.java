@@ -24,6 +24,13 @@ public class ChronicDisease_PetMapper {
                 chronicDisease_PetDto.getDateOfDiagnosis());
     }
 
+    public ChronicDisease_Pet mapToUpdatedChronicDisease_Pet(final ChronicDisease_PetDto chronicDisease_PetDto){
+        return new ChronicDisease_Pet(chronicDisease_PetDto.getId(),
+                petService.getPet(chronicDisease_PetDto.getPetId()).orElseThrow(RecordNotFoundException::new),
+                chronicDiseaseService.getChronicDisease(chronicDisease_PetDto.getChronicDiseaseId()).orElseThrow(RecordNotFoundException::new),
+                chronicDisease_PetDto.getDateOfDiagnosis());
+    }
+
     public ChronicDisease_PetDto mapToChronicDisease_PetDto(final ChronicDisease_Pet chronicDisease_Pet) {
         return new ChronicDisease_PetDto(
                 chronicDisease_Pet.getId(),

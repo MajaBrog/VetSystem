@@ -22,6 +22,18 @@ public class VaccinationMapper {
                 vaccinationDto.getIntervalInWeeks());
     }
 
+    public Vaccination mapToUpdatedVaccination(final VaccinationDto vaccinationDto) {
+        return new Vaccination(
+                vaccinationDto.getId(),
+                vaccinationDto.getName(),
+                vaccinationDto.getDisease(),
+                vaccinationDto.getDosePerKg(),
+                vaccinationDto.getUnit(),
+                vaccinationDto.isMandatory(),
+                vaccinationDto.getIntervalInWeeks());
+    }
+
+
     public VaccinationDto mapToVaccinationDto(final Vaccination vaccination) {
         return new VaccinationDto(
                 vaccination.getId(),
